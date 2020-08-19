@@ -45,7 +45,10 @@ setup() {
     # check project environment and setup
     if [ ! -e $note_dir ]; then
         echo -e "${yellow}creating note storage directory...${nocolor}"
-        mkdir -p $note_dir
+        mkdir -p "${note_dir}/${title_sub_dir}"
+        mkdir -p "${note_dir}/${content_sub_dir}"
+        mkdir -p "${note_dir}/${tag_sub_dir}"
+        mkdir -p "${note_dir}/${image_sub_dir}"
         echo -e "${green}done${nocolor}"
     fi
 }
