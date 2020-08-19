@@ -28,9 +28,9 @@ setup() {
     white="\033[1;37m"
     # check project environment and setup
     if [ ! -e $note_dir ]; then
-        echo "${yellow}creating note storage directory...${nocolor}"
+        echo -e "${yellow}creating note storage directory...${nocolor}"
         mkdir -p $note_dir
-        echo "${green}done${nocolor}"
+        echo -e "${green}done${nocolor}"
     fi
 }
 
