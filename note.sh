@@ -5,6 +5,8 @@
 # Also, Note.sh project is hosted on my [GitHub Repo](https://github.com/yangyanzhan/note.sh). If you like this project, don"t forget visit my GitHub Repo, star it and then follow me.
 
 action=$1
+arg1=$2
+arg2=$3
 
 setup() {
     # setup global variables
@@ -40,10 +42,20 @@ list() {
     ls $note_dir
 }
 
+new() {
+    title=$arg1
+    content=$arg2
+    echo $title
+    echo $content
+}
+
 main() {
     setup
     if [[ $action == "list" ]]; then
         list
+    fi
+    if [[ $action == "new" ]]; then
+        new
     fi
 }
 
