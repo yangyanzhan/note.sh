@@ -45,8 +45,7 @@ list() {
 new() {
     title=$arg1
     content=$arg2
-    echo $title
-    echo $content
+    echo $content > "${note_dir}/${title}"
 }
 
 main() {
