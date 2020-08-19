@@ -62,26 +62,6 @@ inc_no() {
     echo $max_no > "${note_dir}/${info_filename}"
 }
 
-list() {
-    nos=$(ls "${note_dir}/${title_sub_dir}")
-    for no in $nos
-    do
-        echo -e "${yellow}#${no}${nocolor}"
-        title=$(cat "${note_dir}/${title_sub_dir}/${no}")
-        echo -e "${green}title:${nocolor}"
-        echo -e "${nocolor}${title}${nocolor}"
-        content="empty"
-        content_path="${note_dir}/${content_sub_dir}/${no}"
-        echo -e "${green}content:${nocolor}"
-        if [ -e $content_path ]; then
-            content=$(cat $content_path)
-            echo -e "${nocolor}${content}${nocolor}"
-        else
-            echo -e "${red}${content}${nocolor}"
-        fi
-    done
-}
-
 new() {
     echo -e "${yellow}creating new note #${max_no} ...${nocolor}"
     title=$arg1
@@ -91,9 +71,34 @@ new() {
 }
 
 view() {
-    no=$arg1
-    title_path="${note_dir}/title/${no}"
-    content_path="${note_dir}"
+    no=$1
+    title=""
+    title_path="${note_dir}/${title_sub_dir}/${no}"
+    if [ ! -e $title_path ]; then
+        echo -e "${red}#${no} does not exist${nocolor}"
+        return
+    fi
+    echo -e "${yellow}#${no}${nocolor}"
+    title=$(cat "${title_path}")
+    echo -e "${green}title:${nocolor}"
+    echo -e "${nocolor}${title}${nocolor}"
+    content="empty"
+    content_path="${note_dir}/${content_sub_dir}/${no}"
+    echo -e "${green}content:${nocolor}"
+    if [ -e $content_path ]; then
+        content=$(cat $content_path)
+        echo -e "${nocolor}${content}${nocolor}"
+    else
+        echo -e "${red}${content}${nocolor}"
+    fi
+}
+
+list() {
+    nos=$(ls "${note_dir}/${title_sub_dir}")
+    for no in $nos
+    do
+        view $no
+    done
 }
 
 edit() {
@@ -109,7 +114,7 @@ main() {
     elif [[ $action == "new" ]]; then
         new
     elif [[ $action == "view" ]]; then
-        view
+        view $arg1
     elif [[ $action == "edit" ]]; then
         edit
     fi
