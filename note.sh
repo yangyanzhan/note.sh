@@ -57,14 +57,28 @@ setup() {
     max_no=$(cat "${note_dir}/${info_filename}")
 }
 
+inc_no() {
+    max_no=$(( $max_no + 1 ))
+    echo $max_no > "${note_dir}/${info_filename}"
+}
+
 list() {
-    ls $note_dir
+    nos=$(ls "${note_dir}/${title_sub_dir}")
+    for no in $nos
+    do
+        echo -e "${yellow}#${no}${nocolor}"
+        content=$(cat "${note_dir}/${title_sub_dir}/${no}")
+        echo -e "${green}title: ${content}${nocolor}"
+        echo -e "content:"
+    done
 }
 
 new() {
+    echo -e "${yellow}creating new note #${max_no} ...${nocolor}"
     title=$arg1
-    content=$arg2
-    echo $content > "${note_dir}/${title}"
+    echo $title > "${note_dir}/${title_sub_dir}/${max_no}"
+    inc_no
+    echo -e "${green}done${nocolor}"
 }
 
 view() {
@@ -79,16 +93,15 @@ edit() {
 
 main() {
     setup
-    if [[ $action == "list" ]]; then
+    if [[ $action == "ls" ]]; then
         list
-    fi
-    if [[ $action == "new" ]]; then
+    elif [[ $action == "list" ]]; then
+        list
+    elif [[ $action == "new" ]]; then
         new
-    fi
-    if [[ $action == "view" ]]; then
+    elif [[ $action == "view" ]]; then
         view
-    fi
-    if [[ $action == "edit" ]]; then
+    elif [[ $action == "edit" ]]; then
         edit
     fi
 }
