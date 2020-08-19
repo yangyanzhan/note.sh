@@ -17,6 +17,8 @@ setup() {
     root_dir=$(dirname $BASH_SOURCE)
     # note storage directory
     note_dir="${root_dir}/.note"
+    # meta info
+    info_filename="info"
     # directory where title resides
     title_sub_dir="title"
     # directory where content resides
@@ -49,8 +51,10 @@ setup() {
         mkdir -p "${note_dir}/${content_sub_dir}"
         mkdir -p "${note_dir}/${tag_sub_dir}"
         mkdir -p "${note_dir}/${image_sub_dir}"
+        echo 1 > "${note_dir}/${info_filename}"
         echo -e "${green}done${nocolor}"
     fi
+    max_no=$(cat "${note_dir}/${info_filename}")
 }
 
 list() {
