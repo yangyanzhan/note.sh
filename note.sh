@@ -67,9 +67,18 @@ list() {
     for no in $nos
     do
         echo -e "${yellow}#${no}${nocolor}"
-        content=$(cat "${note_dir}/${title_sub_dir}/${no}")
-        echo -e "${green}title: ${content}${nocolor}"
-        echo -e "content:"
+        title=$(cat "${note_dir}/${title_sub_dir}/${no}")
+        echo -e "${green}title:${nocolor}"
+        echo -e "${nocolor}${title}${nocolor}"
+        content="empty"
+        content_path="${note_dir}/${content_sub_dir}/${no}"
+        echo -e "${green}content:${nocolor}"
+        if [ -e $content_path ]; then
+            content=$(cat $content_path)
+            echo -e "${nocolor}${content}${nocolor}"
+        else
+            echo -e "${red}${content}${nocolor}"
+        fi
     done
 }
 
