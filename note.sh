@@ -17,12 +17,14 @@ setup() {
     root_dir=$(dirname $BASH_SOURCE)
     # note storage directory
     note_dir="${root_dir}/.note"
-    # directory where title reside
+    # directory where title resides
     title_sub_dir="title"
-    # directory where content reside
+    # directory where content resides
     content_sub_dir="content"
-    # directory where tag reside
+    # directory where tag resides
     tag_sub_dir="tag"
+    # directory where image resides
+    image_sub_dir="image"
     # colors
     nocolor="\033[0m"
     red="\033[0;31m"
