@@ -7,6 +7,9 @@
 action=$1
 arg1=$2
 arg2=$3
+arg3=$4
+arg4=$5
+arg5=$6
 
 setup() {
     # setup global variables
@@ -14,6 +17,13 @@ setup() {
     root_dir=$(dirname $BASH_SOURCE)
     # note storage directory
     note_dir="${root_dir}/.note"
+    # directory where title reside
+    title_sub_dir="title"
+    # directory where content reside
+    content_sub_dir="content"
+    # directory where tag reside
+    tag_sub_dir="tag"
+    # colors
     nocolor="\033[0m"
     red="\033[0;31m"
     green="\033[0;32m"
@@ -48,6 +58,16 @@ new() {
     echo $content > "${note_dir}/${title}"
 }
 
+view() {
+    no=$arg1
+    title_path="${note_dir}/title/${no}"
+    content_path="${note_dir}"
+}
+
+edit() {
+    echo "editing"
+}
+
 main() {
     setup
     if [[ $action == "list" ]]; then
@@ -55,6 +75,12 @@ main() {
     fi
     if [[ $action == "new" ]]; then
         new
+    fi
+    if [[ $action == "view" ]]; then
+        view
+    fi
+    if [[ $action == "edit" ]]; then
+        edit
     fi
 }
 
