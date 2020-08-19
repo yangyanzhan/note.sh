@@ -102,7 +102,14 @@ list() {
 }
 
 edit() {
-    echo "editing"
+    no=$1
+    title_path="${note_dir}/${title_sub_dir}/${no}"
+    if [ ! -e $title_path ]; then
+        echo -e "${red}#${no} does not exist${nocolor}"
+        return
+    fi
+    content_path="${note_dir}/${content_sub_dir}/${no}"
+    vi $content_path
 }
 
 main() {
@@ -116,7 +123,7 @@ main() {
     elif [[ $action == "view" ]]; then
         view $arg1
     elif [[ $action == "edit" ]]; then
-        edit
+        edit $arg1
     fi
 }
 
