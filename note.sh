@@ -112,6 +112,18 @@ edit() {
     vi $content_path
 }
 
+tag() {
+    no=$1
+    tag=$2
+    title_path="${note_dir}/${title_sub_dir}/${no}"
+    if [ ! -e $title_path ]; then
+        echo -e "${red}#${no} does not exist${nocolor}"
+        return
+    fi
+    tag_path="${note_dir}/${tag_sub_dir}/${no}"
+    echo $tag > $tag_path
+}
+
 main() {
     setup
     if [[ $action == "ls" ]]; then
@@ -124,6 +136,8 @@ main() {
         view $arg1
     elif [[ $action == "edit" ]]; then
         edit $arg1
+    elif [[ $action == "tag" ]]; then
+        tag $arg1 $arg2
     fi
 }
 
