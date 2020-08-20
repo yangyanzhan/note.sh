@@ -97,7 +97,9 @@ center() {
     seen_text=$2
     padding=${#3}
     columns=$(tput cols)
-    printf "%*s\n" $(((${#text} + $columns + $padding) / 2)) "$text"
+    # printf "%*s\n" $(((${#text} + $columns + $padding) / 2)) "$text"
+    printf ' %.0s' $(seq 1 $(($columns / 3)))
+    printf "${text}\n"
 }
 
 divider() {
