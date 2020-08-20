@@ -150,6 +150,10 @@ tag() {
     echo $tag > $tag_path
 }
 
+attach() {
+    echo "placeholder for attach action"
+}
+
 main() {
     setup
     if [[ $action == "install" ]]; then
@@ -176,6 +180,10 @@ main() {
         tag $arg1 $arg2
     elif [[ $action == "tag" ]]; then
         tag $arg1 $arg2
+    elif [[ $action == "a" ]]; then
+        attach
+    elif [[ $action == "attach" ]]; then
+        attach
     fi
 }
 
