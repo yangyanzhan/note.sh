@@ -150,7 +150,19 @@ list() {
     nos=$(ls "${note_dir}/${title_sub_dir}")
     for no in $nos
     do
-        view $no
+        tag_path="${note_dir}/${tag_sub_dir}/${no}"
+        tags=""
+        if [[ -e $tag_path ]]; then
+            tags=$(cat $tag_path)
+        fi
+        if [[ $arg_tag == "" ]]; then
+            view $no
+        else
+            has_tag=$(echo $tags | grep $arg_tag)
+            if [[ $has_tag ]]; then
+                view $no
+            fi
+        fi
     done
 }
 
