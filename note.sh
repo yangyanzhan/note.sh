@@ -79,6 +79,10 @@ setup() {
     max_no=$(cat "${note_dir}/${info_filename}")
 }
 
+install() {
+    echo "placeholder for installation"
+}
+
 inc_no() {
     max_no=$(( $max_no + 1 ))
     echo $max_no > "${note_dir}/${info_filename}"
@@ -148,7 +152,9 @@ tag() {
 
 main() {
     setup
-    if [[ $action == "l" ]]; then
+    if [[ $action == "install" ]]; then
+        install
+    elif [[ $action == "l" ]]; then
         list
     elif [[ $action == "ls" ]]; then
         list
