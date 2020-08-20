@@ -27,12 +27,12 @@ while (( "$#" )); do
                 arg_tag=$2
                 shift 2
             else
-                echo "${red}Error: Argument for $1 is missing${nocolor}" >&2
+                echo "${lightred}Error: Argument for $1 is missing${nocolor}" >&2
                 exit 1
             fi
             ;;
         -*|--*=)
-            echo -e "${red}Error: Unsupported Option $1${nocolor}" >&2
+            echo -e "${lightred}Error: Unsupported Option $1${nocolor}" >&2
             exit 1
             ;;
         *)
@@ -94,29 +94,27 @@ setup() {
 
 center() {
     text=$1
-    seen_text=$2
-    padding=${#3}
+    factor=$2
     columns=$(tput cols)
-    # printf "%*s\n" $(((${#text} + $columns + $padding) / 2)) "$text"
-    printf ' %.0s' $(seq 1 $(($columns / 3)))
+    printf ' %.0s' $(seq 1 $(($columns / $factor)))
     printf "${text}\n"
 }
 
 divider() {
     columns=$(tput cols)
     line=$(printf '=%.0s' $(seq 1 $columns))
-    echo -e "${yellow}${line}${nocolor}"
+    echo -e "${lightcyan}${line}${nocolor}"
 }
 
 setup_workspace() {
     if [ ! -e $note_dir ]; then
-        echo -e "${yellow}creating note storage directory...${nocolor}"
+        echo -e "${lightcyan}creating note storage directory...${nocolor}"
         mkdir -p "${note_dir}/${title_sub_dir}"
         mkdir -p "${note_dir}/${content_sub_dir}"
         mkdir -p "${note_dir}/${tag_sub_dir}"
         mkdir -p "${note_dir}/${image_sub_dir}"
         echo 1 > "${note_dir}/${info_filename}"
-        echo -e "${green}done${nocolor}"
+        echo -e "${lightgreen}done${nocolor}"
     fi
     max_no=$(cat "${note_dir}/${info_filename}")
 }
@@ -131,7 +129,7 @@ inc_no() {
 }
 
 new() {
-    echo -e "${yellow}creating new note #${max_no} ...${nocolor}"
+    echo -e "${lightcyan}creating new note #${max_no} ...${nocolor}"
     title=$arg1
     title_path="${note_dir}/${title_sub_dir}/${max_no}"
     if [[ $title == "" ]]; then
@@ -140,7 +138,7 @@ new() {
         echo $title > $title_path
     fi
     inc_no
-    echo -e "${green}done${nocolor}"
+    echo -e "${lightgreen}done${nocolor}"
 }
 
 view() {
@@ -148,23 +146,31 @@ view() {
     title=""
     title_path="${note_dir}/${title_sub_dir}/${no}"
     if [ ! -e $title_path ]; then
-        echo -e "${red}#${no} does not exist${nocolor}"
+        echo -e "${lightred}#${no} does not exist${nocolor}"
         return
     fi
     title=$(cat "${title_path}" | sed "s/  *//g")
-    title_caption="${yellow}#${no}:${nocolor}${green}${title}${nocolor}"
-    title_caption_nocolor="#${no}:${title}"
-    title_caption_colorcode="${yellow}${nocolor}${green}${nocolor}"
-    title_caption=$(center $title_caption $title_caption_nocolor $title_caption_colorcode)
+    title_caption="${lightcyan}#${no}:${nocolor}${lightgreen}${title}${nocolor}"
+    title_caption=$(center $title_caption 3)
     echo -e "${title_caption}"
+    tag=""
+    tag_path="${note_dir}/${tag_sub_dir}/${no}"
+    if [ -e $tag_path ]; then
+        tag=$(cat $tag_path)
+    fi
+    if [[ $tag != "" ]]; then
+        tag_caption="${lightblue}tag:${tag}${nocolor}"
+        tag_caption=$(center $tag_caption 2)
+        echo -e "${tag_caption}"
+    fi
     content="empty"
     content_path="${note_dir}/${content_sub_dir}/${no}"
-    # echo -e "${green}content:${nocolor}"
+    # echo -e "${lightgreen}content:${nocolor}"
     if [ -e $content_path ]; then
         content=$(cat $content_path)
         echo -e "${nocolor}${content}${nocolor}"
     else
-        echo -e "${red}${content}${nocolor}"
+        echo -e "${lightred}${content}${nocolor}"
     fi
     divider
 }
@@ -193,7 +199,7 @@ edit() {
     no=$1
     title_path="${note_dir}/${title_sub_dir}/${no}"
     if [ ! -e $title_path ]; then
-        echo -e "${red}#${no} does not exist${nocolor}"
+        echo -e "${lightred}#${no} does not exist${nocolor}"
         return
     fi
     if [[ $arg_title_flag == 1 ]]; then
@@ -210,7 +216,7 @@ tag() {
     tag=$2
     title_path="${note_dir}/${title_sub_dir}/${no}"
     if [ ! -e $title_path ]; then
-        echo -e "${red}#${no} does not exist${nocolor}"
+        echo -e "${lightred}#${no} does not exist${nocolor}"
         return
     fi
     tag_path="${note_dir}/${tag_sub_dir}/${no}"
@@ -223,7 +229,7 @@ attach() {
 
 remove() {
     no=$1
-    echo -e "${red}removing note ${no}...${nocolor}"
+    echo -e "${lightred}removing note ${no}...${nocolor}"
     title_path="${note_dir}/${title_sub_dir}/${no}"
     if [ -e $title_path ]; then
         rm $title_path
@@ -240,13 +246,13 @@ remove() {
     if [ -e $image_path ]; then
         rm $image_path
     fi
-    echo -e "${green}done${nocolor}"
+    echo -e "${lightgreen}done${nocolor}"
 }
 
 my_clear() {
-    echo -e "${red}cleaning old note storage directory...${nocolor}"
+    echo -e "${lightred}cleaning old note storage directory...${nocolor}"
     rm -rf $note_dir
-    echo -e "${green}done${nocolor}"
+    echo -e "${lightgreen}done${nocolor}"
     setup_workspace
 }
 
