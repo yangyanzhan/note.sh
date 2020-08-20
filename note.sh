@@ -92,6 +92,14 @@ setup() {
     setup_workspace
 }
 
+center() {
+    text=$1
+    seen_text=$2
+    padding=${#3}
+    columns=$(tput cols)
+    printf "%*s\n" $(((${#text} + $columns + $padding) / 2)) "$text"
+}
+
 setup_workspace() {
     if [ ! -e $note_dir ]; then
         echo -e "${yellow}creating note storage directory...${nocolor}"
@@ -135,13 +143,15 @@ view() {
         echo -e "${red}#${no} does not exist${nocolor}"
         return
     fi
-    echo -e "${yellow}#${no}${nocolor}"
-    title=$(cat "${title_path}")
-    echo -e "${green}title:${nocolor}"
-    echo -e "${nocolor}${title}${nocolor}"
+    title=$(cat "${title_path}" | sed "s/  *//g")
+    title_caption="${yellow}#${no}:${nocolor}${green}${title}${nocolor}"
+    title_caption_nocolor="#${no}:${title}"
+    title_caption_colorcode="${yellow}${nocolor}${green}${nocolor}"
+    title_caption=$(center $title_caption $title_caption_nocolor $title_caption_colorcode)
+    echo -e "${title_caption}"
     content="empty"
     content_path="${note_dir}/${content_sub_dir}/${no}"
-    echo -e "${green}content:${nocolor}"
+    # echo -e "${green}content:${nocolor}"
     if [ -e $content_path ]; then
         content=$(cat $content_path)
         echo -e "${nocolor}${content}${nocolor}"
