@@ -5,7 +5,6 @@
 # Also, Note.sh project is hosted on my [GitHub Repo](https://github.com/yangyanzhan/note.sh). If you like this project, don"t forget visit my GitHub Repo, star it and then follow me.
 
 params=""
-placeholder_flag=0
 
 action=""
 arg1=""
@@ -14,33 +13,45 @@ arg3=""
 arg4=""
 arg5=""
 
+arg_tag=""
+arg_title_flag=0
+
 while (( "$#" )); do
     case "$1" in
-      -a|--placeholder-flag)
-          placeholder_flag=1
-          shift
-          ;;
-      -*|--*=)
-          echo -e "${red}Error: Unsupported Option $1${nocolor}" >&2
-          exit 1
-          ;;
-      *)
-          params="$params $1"
-          if [[ $action == "" ]]; then
-              action=$1
-          elif [[ $arg1 == "" ]]; then
-              arg1=$1
-          elif [[ $arg2 == "" ]]; then
-              arg2=$1
-          elif [[ $arg3 == "" ]]; then
-              arg3=$1
-          elif [[ $arg4 == "" ]]; then
-              arg4=$1
-          elif [[ $arg5 == "" ]]; then
-              arg5=$1
-          fi
-          shift
-          ;;
+        --title)
+            arg_title_flag=1
+            shift
+            ;;
+        --tag)
+            if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+                arg_tag=$2
+                shift 2
+            else
+                echo "${red}Error: Argument for $1 is missing${nocolor}" >&2
+                exit 1
+            fi
+            ;;
+        -*|--*=)
+            echo -e "${red}Error: Unsupported Option $1${nocolor}" >&2
+            exit 1
+            ;;
+        *)
+            params="$params $1"
+            if [[ $action == "" ]]; then
+                action=$1
+            elif [[ $arg1 == "" ]]; then
+                arg1=$1
+            elif [[ $arg2 == "" ]]; then
+                arg2=$1
+            elif [[ $arg3 == "" ]]; then
+                arg3=$1
+            elif [[ $arg4 == "" ]]; then
+                arg4=$1
+            elif [[ $arg5 == "" ]]; then
+                arg5=$1
+            fi
+            shift
+            ;;
     esac
 done
 
@@ -150,8 +161,13 @@ edit() {
         echo -e "${red}#${no} does not exist${nocolor}"
         return
     fi
-    content_path="${note_dir}/${content_sub_dir}/${no}"
-    vi $content_path
+    if [[ $arg_title_flag == 1 ]]; then
+        title_path="${note_dir}/${title_sub_dir}/${no}"
+        vi $title_path
+    else
+        content_path="${note_dir}/${content_sub_dir}/${no}"
+        vi $content_path
+    fi
 }
 
 tag() {
