@@ -7,6 +7,13 @@
 params=""
 placeholder_flag=0
 
+action=""
+arg1=""
+arg2=""
+arg3=""
+arg4=""
+arg5=""
+
 while (( "$#" )); do
     case "$1" in
       -a|--placeholder-flag)
@@ -19,19 +26,23 @@ while (( "$#" )); do
           ;;
       *)
           params="$params $1"
+          if [[ $action == "" ]]; then
+              action=$1
+          elif [[ $arg1 == "" ]]; then
+              arg1=$1
+          elif [[ $arg2 == "" ]]; then
+              arg2=$1
+          elif [[ $arg3 == "" ]]; then
+              arg3=$1
+          elif [[ $arg4 == "" ]]; then
+              arg4=$1
+          elif [[ $arg5 == "" ]]; then
+              arg5=$1
+          fi
           shift
           ;;
     esac
 done
-
-eval set -- "$params"
-
-action=$1
-arg1=$2
-arg2=$3
-arg3=$4
-arg4=$5
-arg5=$6
 
 setup() {
     # setup global variables
@@ -91,7 +102,12 @@ inc_no() {
 new() {
     echo -e "${yellow}creating new note #${max_no} ...${nocolor}"
     title=$arg1
-    echo $title > "${note_dir}/${title_sub_dir}/${max_no}"
+    title_path="${note_dir}/${title_sub_dir}/${max_no}"
+    if [[ $title == "" ]]; then
+        vi $title_path
+    else
+        echo $title > $title_path
+    fi
     inc_no
     echo -e "${green}done${nocolor}"
 }
