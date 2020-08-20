@@ -89,6 +89,10 @@ setup() {
     lightcyan="\033[1;36m"
     white="\033[1;37m"
     # check project environment and setup
+    setup_workspace
+}
+
+setup_workspace() {
     if [ ! -e $note_dir ]; then
         echo -e "${yellow}creating note storage directory...${nocolor}"
         mkdir -p "${note_dir}/${title_sub_dir}"
@@ -198,6 +202,17 @@ attach() {
     echo "placeholder for attach action"
 }
 
+remove() {
+    echo "placeholder for remove action"
+}
+
+my_clear() {
+    echo -e "${yellow}cleaning old note storage directory...${nocolor}"
+    rm -rf $note_dir
+    echo -e "${green}done${nocolor}"
+    setup_workspace
+}
+
 main() {
     setup
     if [[ $action == "install" ]]; then
@@ -228,6 +243,14 @@ main() {
         attach
     elif [[ $action == "attach" ]]; then
         attach
+    elif [[ $action == "r" ]]; then
+        remove
+    elif [[ $action == "remove" ]]; then
+        remove
+    elif [[ $action == "c" ]]; then
+        my_clear
+    elif [[ $action == "clear" ]]; then
+        my_clear
     fi
 }
 
