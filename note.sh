@@ -176,7 +176,7 @@ view() {
 }
 
 list() {
-    nos=$(ls "${note_dir}/${title_sub_dir}")
+    nos=$(ls "${note_dir}/${title_sub_dir}" | sort -n)
     for no in $nos
     do
         tag_path="${note_dir}/${tag_sub_dir}/${no}"
