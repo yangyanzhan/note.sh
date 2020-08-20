@@ -4,6 +4,28 @@
 # I"m interested in all kinds of algorithmic problems. If you want to learn more about me, you can visit my [Youtube Channel](https://www.youtube.com/channel/UCDkz-__gl3frqLexukpG0DA?view_as=subscriber), [Twitter Account](https://twitter.com/YangYanzhan) or [GitHub Repo](https://github.com/yangyanzhan/code-camp)
 # Also, Note.sh project is hosted on my [GitHub Repo](https://github.com/yangyanzhan/note.sh). If you like this project, don"t forget visit my GitHub Repo, star it and then follow me.
 
+params=""
+placeholder_flag=0
+
+while (( "$#" )); do
+    case "$1" in
+      -a|--placeholder-flag)
+          placeholder_flag=1
+          shift
+          ;;
+      -*|--*=)
+          echo -e "${red}Error: Unsupported Option $1${nocolor}" >&2
+          exit 1
+          ;;
+      *)
+          params="$params $1"
+          shift
+          ;;
+    esac
+done
+
+eval set -- "$params"
+
 action=$1
 arg1=$2
 arg2=$3
