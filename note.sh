@@ -100,6 +100,12 @@ center() {
     printf "%*s\n" $(((${#text} + $columns + $padding) / 2)) "$text"
 }
 
+divider() {
+    columns=$(tput cols)
+    line=$(printf '=%.0s' $(seq 1 $columns))
+    echo -e "${yellow}${line}${nocolor}"
+}
+
 setup_workspace() {
     if [ ! -e $note_dir ]; then
         echo -e "${yellow}creating note storage directory...${nocolor}"
@@ -158,6 +164,7 @@ view() {
     else
         echo -e "${red}${content}${nocolor}"
     fi
+    divider
 }
 
 list() {
