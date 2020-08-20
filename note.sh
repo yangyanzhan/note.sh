@@ -148,16 +148,26 @@ tag() {
 
 main() {
     setup
-    if [[ $action == "ls" ]]; then
+    if [[ $action == "l" ]]; then
+        list
+    elif [[ $action == "ls" ]]; then
         list
     elif [[ $action == "list" ]]; then
         list
+    elif [[ $action == "n" ]]; then
+        new
     elif [[ $action == "new" ]]; then
         new
+    elif [[ $action == "v" ]]; then
+        view $arg1
     elif [[ $action == "view" ]]; then
         view $arg1
+    elif [[ $action == "e" ]]; then
+        edit $arg1
     elif [[ $action == "edit" ]]; then
         edit $arg1
+    elif [[ $action == "t" ]]; then
+        tag $arg1 $arg2
     elif [[ $action == "tag" ]]; then
         tag $arg1 $arg2
     fi
