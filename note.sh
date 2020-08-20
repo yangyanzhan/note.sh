@@ -203,11 +203,29 @@ attach() {
 }
 
 remove() {
-    echo "placeholder for remove action"
+    no=$1
+    echo -e "${red}removing note ${no}...${nocolor}"
+    title_path="${note_dir}/${title_sub_dir}/${no}"
+    if [ -e $title_path ]; then
+        rm $title_path
+    fi
+    content_path="${note_dir}/${content_sub_dir}/${no}"
+    if [ -e $content_path ]; then
+        rm $content_path
+    fi
+    tag_path="${note_dir}/${tag_sub_dir}/${no}"
+    if [ -e $tag_path ]; then
+        rm $tag_path
+    fi
+    image_path="${note_dir}/${image_sub_dir}/${no}"
+    if [ -e $image_path ]; then
+        rm $image_path
+    fi
+    echo -e "${green}done${nocolor}"
 }
 
 my_clear() {
-    echo -e "${yellow}cleaning old note storage directory...${nocolor}"
+    echo -e "${red}cleaning old note storage directory...${nocolor}"
     rm -rf $note_dir
     echo -e "${green}done${nocolor}"
     setup_workspace
@@ -244,9 +262,9 @@ main() {
     elif [[ $action == "attach" ]]; then
         attach
     elif [[ $action == "r" ]]; then
-        remove
+        remove $arg1
     elif [[ $action == "remove" ]]; then
-        remove
+        remove $arg1
     elif [[ $action == "c" ]]; then
         my_clear
     elif [[ $action == "clear" ]]; then
