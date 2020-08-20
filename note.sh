@@ -176,23 +176,28 @@ view() {
 }
 
 list() {
-    nos=$(ls "${note_dir}/${title_sub_dir}" | sort -n)
-    for no in $nos
-    do
-        tag_path="${note_dir}/${tag_sub_dir}/${no}"
-        tags=""
-        if [[ -e $tag_path ]]; then
-            tags=$(cat $tag_path)
-        fi
-        if [[ $arg_tag == "" ]]; then
-            view $no
-        else
-            has_tag=$(echo $tags | grep $arg_tag)
-            if [[ $has_tag ]]; then
-                view $no
+    mode=$1
+    if [[ $mode == "" ]]; then
+        nos=$(ls "${note_dir}/${title_sub_dir}" | sort -n)
+        for no in $nos
+        do
+            tag_path="${note_dir}/${tag_sub_dir}/${no}"
+            tags=""
+            if [[ -e $tag_path ]]; then
+                tags=$(cat $tag_path)
             fi
-        fi
-    done
+            if [[ $arg_tag == "" ]]; then
+                view $no
+            else
+                has_tag=$(echo $tags | grep $arg_tag)
+                if [[ $has_tag ]]; then
+                    view $no
+                fi
+            fi
+        done
+    elif [[ $mode == "tag" ]]; then
+        echo "tag placeholder"
+    fi
 }
 
 edit() {
@@ -261,11 +266,11 @@ main() {
     if [[ $action == "install" ]]; then
         install
     elif [[ $action == "l" ]]; then
-        list
+        list $arg1
     elif [[ $action == "ls" ]]; then
-        list
+        list $arg1
     elif [[ $action == "list" ]]; then
-        list
+        list $arg1
     elif [[ $action == "n" ]]; then
         new
     elif [[ $action == "new" ]]; then
