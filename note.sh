@@ -261,6 +261,14 @@ my_clear() {
     setup_workspace
 }
 
+my_export() {
+    echo "placeholder for export action"
+}
+
+my_import() {
+    echo "placeholder for import action"
+}
+
 my_help() {
     echo "placeholder for help action"
 }
@@ -303,6 +311,10 @@ main() {
         my_clear
     elif [[ $action == "clear" ]]; then
         my_clear
+    elif [[ $action == "export" ]]; then
+        my_export
+    elif [[ $action == "import" ]]; then
+        my_import
     elif [[ $action == "h" ]]; then
         my_help
     elif [[ $action == "help" ]]; then
