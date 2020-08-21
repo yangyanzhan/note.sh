@@ -261,6 +261,10 @@ my_clear() {
     setup_workspace
 }
 
+my_help() {
+    echo "placeholder for help action"
+}
+
 main() {
     setup
     if [[ $action == "install" ]]; then
@@ -299,6 +303,10 @@ main() {
         my_clear
     elif [[ $action == "clear" ]]; then
         my_clear
+    elif [[ $action == "h" ]]; then
+        my_help
+    elif [[ $action == "help" ]]; then
+        my_help
     fi
 }
 
