@@ -197,7 +197,7 @@ list() {
             fi
         done
     elif [[ $mode == "tag" ]]; then
-        echo "tag placeholder"
+        find "${note_dir}/tag" -name "*" -type f | xargs -I % sh -c "cat %" | sort | uniq
     elif [[ $mode == "alias" ]]; then
         cat "$HOME/.zshrc" | grep "alias n1"
         cat "$HOME/.zshrc" | grep "alias n2"
