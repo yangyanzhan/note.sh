@@ -284,6 +284,11 @@ my_help() {
     echo "placeholder for help action"
 }
 
+error() {
+    msg=$1
+    echo $msg
+}
+
 main() {
     setup
     if [[ $action == "install" ]]; then
@@ -330,6 +335,8 @@ main() {
         my_help
     elif [[ $action == "help" ]]; then
         my_help
+    else
+        error "unrecognized action"
     fi
 }
 
