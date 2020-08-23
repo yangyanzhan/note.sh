@@ -199,7 +199,15 @@ list() {
     elif [[ $mode == "tag" ]]; then
         echo "tag placeholder"
     elif [[ $mode == "alias" ]]; then
-        echo "alias placeholder"
+        cat "$HOME/.zshrc" | grep "alias n1"
+        cat "$HOME/.zshrc" | grep "alias n2"
+        cat "$HOME/.zshrc" | grep "alias n3"
+        cat "$HOME/.zshrc" | grep "alias n4"
+        cat "$HOME/.zshrc" | grep "alias n5"
+        cat "$HOME/.zshrc" | grep "alias n6"
+        cat "$HOME/.zshrc" | grep "alias n7"
+        cat "$HOME/.zshrc" | grep "alias n8"
+        cat "$HOME/.zshrc" | grep "alias n9"
     fi
 }
 
