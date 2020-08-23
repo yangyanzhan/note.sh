@@ -292,7 +292,15 @@ my_import() {
 }
 
 my_help() {
-    echo "placeholder for help action"
+    echo -e "${lightred}actions:"
+    echo -e "${lightgreen}n list"
+    echo -e "${lightgreen}n list --tag watch"
+    echo -e "${lightgreen}n list tag"
+    echo -e "${lightgreen}n list alias"
+    echo -e "${lightgreen}n view 1"
+    echo -e "${lightgreen}n view no"
+    echo -e "${lightgreen}n edit 1 'Test Title'"
+    echo -e "${lightgreen}n tag 1 'test'"
 }
 
 error() {
