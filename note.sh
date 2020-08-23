@@ -144,36 +144,42 @@ new() {
 
 view() {
     no=$1
-    title=""
-    title_path="${note_dir}/${title_sub_dir}/${no}"
-    if [ ! -e $title_path ]; then
-        echo -e "${lightred}#${no} does not exist${nocolor}"
-        return
-    fi
-    title=$(cat "${title_path}" | sed "s/  *//g")
-    title_caption="${lightcyan}#${no}:${nocolor}${lightgreen}${title}${nocolor}"
-    title_caption=$(center $title_caption 3)
-    echo -e "${title_caption}"
-    tag=""
-    tag_path="${note_dir}/${tag_sub_dir}/${no}"
-    if [ -e $tag_path ]; then
-        tag=$(cat $tag_path)
-    fi
-    if [[ $tag != "" ]]; then
-        tag_caption="${lightblue}tag:${tag}${nocolor}"
-        tag_caption=$(center $tag_caption 2)
-        echo -e "${tag_caption}"
-    fi
-    content="empty"
-    content_path="${note_dir}/${content_sub_dir}/${no}"
-    # echo -e "${lightgreen}content:${nocolor}"
-    if [ -e $content_path ]; then
-        content=$(cat $content_path)
-        echo -e "${nocolor}${content}${nocolor}"
+    # output correct no which could be used directly in the info file
+    if [[ $no == "no" ]]; then
+        valid_no=$(find "${note_dir}" -name "*" -type f | grep -v "git" | grep -E '[0-9]+' | xargs -I % sh -c 'basename %' | sort -n | tail -n 1)
+        echo $(($valid_no + 1))
     else
-        echo -e "${lightred}${content}${nocolor}"
+        title=""
+        title_path="${note_dir}/${title_sub_dir}/${no}"
+        if [ ! -e $title_path ]; then
+            echo -e "${lightred}#${no} does not exist${nocolor}"
+            return
+        fi
+        title=$(cat "${title_path}" | sed "s/  *//g")
+        title_caption="${lightcyan}#${no}:${nocolor}${lightgreen}${title}${nocolor}"
+        title_caption=$(center $title_caption 3)
+        echo -e "${title_caption}"
+        tag=""
+        tag_path="${note_dir}/${tag_sub_dir}/${no}"
+        if [ -e $tag_path ]; then
+            tag=$(cat $tag_path)
+        fi
+        if [[ $tag != "" ]]; then
+            tag_caption="${lightblue}tag:${tag}${nocolor}"
+            tag_caption=$(center $tag_caption 2)
+            echo -e "${tag_caption}"
+        fi
+        content="empty"
+        content_path="${note_dir}/${content_sub_dir}/${no}"
+        # echo -e "${lightgreen}content:${nocolor}"
+        if [ -e $content_path ]; then
+            content=$(cat $content_path)
+            echo -e "${nocolor}${content}${nocolor}"
+        else
+            echo -e "${lightred}${content}${nocolor}"
+        fi
+        divider
     fi
-    divider
 }
 
 list() {
