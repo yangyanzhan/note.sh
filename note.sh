@@ -198,6 +198,8 @@ list() {
         done
     elif [[ $mode == "tag" ]]; then
         echo "tag placeholder"
+    elif [[ $mode == "alias" ]]; then
+        echo "alias placeholder"
     fi
 }
 
