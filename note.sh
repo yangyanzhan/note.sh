@@ -59,6 +59,7 @@ setup() {
     # setup global variables
     # project root directory
     root_dir=$(dirname $BASH_SOURCE)
+    root_dir=$HOME
     # note storage directory
     note_dir="${root_dir}/.note"
     # meta info
