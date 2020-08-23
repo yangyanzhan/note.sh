@@ -55,6 +55,10 @@ while (( "$#" )); do
     esac
 done
 
+setup_autocompletion() {
+    echo "manually add _n to zsh fpath"
+}
+
 setup() {
     # setup global variables
     # project root directory
@@ -91,6 +95,7 @@ setup() {
     white="\033[1;37m"
     # check project environment and setup
     setup_workspace
+    # setup_autocompletion
 }
 
 center() {
