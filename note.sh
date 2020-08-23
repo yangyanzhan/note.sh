@@ -179,7 +179,7 @@ view() {
 list() {
     mode=$1
     if [[ $mode == "" ]]; then
-        nos=$(ls "${note_dir}/${title_sub_dir}" | sort -n)
+        nos=$(ls "${note_dir}/${title_sub_dir}" | grep -E '[0-9]+' | sort -n)
         for no in $nos
         do
             tag_path="${note_dir}/${tag_sub_dir}/${no}"
@@ -197,17 +197,17 @@ list() {
             fi
         done
     elif [[ $mode == "tag" ]]; then
-        find "${note_dir}/tag" -name "*" -type f | xargs -I % sh -c "cat %" | sort | uniq
+        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | sort | uniq
     elif [[ $mode == "alias" ]]; then
-        cat "$HOME/.zshrc" | grep "alias n1"
-        cat "$HOME/.zshrc" | grep "alias n2"
-        cat "$HOME/.zshrc" | grep "alias n3"
-        cat "$HOME/.zshrc" | grep "alias n4"
-        cat "$HOME/.zshrc" | grep "alias n5"
-        cat "$HOME/.zshrc" | grep "alias n6"
-        cat "$HOME/.zshrc" | grep "alias n7"
-        cat "$HOME/.zshrc" | grep "alias n8"
-        cat "$HOME/.zshrc" | grep "alias n9"
+        cat "$HOME/.zshrc" | grep "alias n1="
+        cat "$HOME/.zshrc" | grep "alias n2="
+        cat "$HOME/.zshrc" | grep "alias n3="
+        cat "$HOME/.zshrc" | grep "alias n4="
+        cat "$HOME/.zshrc" | grep "alias n5="
+        cat "$HOME/.zshrc" | grep "alias n6="
+        cat "$HOME/.zshrc" | grep "alias n7="
+        cat "$HOME/.zshrc" | grep "alias n8="
+        cat "$HOME/.zshrc" | grep "alias n9="
     fi
 }
 
