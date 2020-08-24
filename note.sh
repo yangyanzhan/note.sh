@@ -171,7 +171,7 @@ view() {
             echo -e "${lightred}#${no} does not exist${nocolor}"
             return
         fi
-        title=$(cat "${title_path}" | sed 's/^ *//g' | sed 's/ *$//g')
+        title=$(cat "${title_path}" | awk '{$1=$1};1')
         title_caption="${lightcyan}#${no}:${nocolor}${lightgreen}${title}${nocolor}"
         title_caption=$(center "$title_caption" 3)
         echo -e "${title_caption}"
