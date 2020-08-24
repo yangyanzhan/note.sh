@@ -128,6 +128,11 @@ setup() {
     # setup_autocompletion
 }
 
+calc_valid_no() {
+    valid_no=$(find "${note_dir}" -name "*" -type f | grep -v "git" | grep -E '[0-9]+' | xargs -I % sh -c 'basename %' | sort -n | tail -n 1)
+    echo $(($valid_no + 1))
+}
+
 setup_workspace() {
     if [ ! -e $note_dir ]; then
         echo -e "${lightcyan}creating note storage directory...${nocolor}"
@@ -139,6 +144,11 @@ setup_workspace() {
         echo -e "${lightgreen}done${nocolor}"
     fi
     max_no=$(cat "${note_dir}/${info_filename}")
+    valid_no=$(calc_valid_no)
+    if [[ $valid_no != $max_no ]]; then
+        max_no=$valid_no
+        echo "$max_no" > "${note_dir}/${info_filename}"
+    fi
 }
 
 install() {
@@ -167,8 +177,8 @@ view() {
     no=$1
     # output correct no which could be used directly in the info file
     if [[ $no == "no" ]]; then
-        valid_no=$(find "${note_dir}" -name "*" -type f | grep -v "git" | grep -E '[0-9]+' | xargs -I % sh -c 'basename %' | sort -n | tail -n 1)
-        echo $(($valid_no + 1))
+        valid_no=$(calc_valid_no)
+        echo $valid_no
     else
         title=""
         title_path="${note_dir}/${title_sub_dir}/${no}"
