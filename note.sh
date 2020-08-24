@@ -336,7 +336,7 @@ my_help() {
 }
 
 error() {
-    msg="$1"
+    msg="${lightred}$1${nocolor}"
     echo -e $msg
 }
 
@@ -375,8 +375,8 @@ main() {
     elif [[ $action == "help" ]]; then
         my_help
     else
-        error "${lightred}unrecognized action!${nocolor}"
-        error "${lightred}you can view available actions by using 'n help'.${nocolor}"
+        error "unrecognized action!"
+        error "you can view available actions by using 'n help'."
         my_help
     fi
 }
