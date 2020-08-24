@@ -230,10 +230,10 @@ list() {
                 fi
             fi
         done
-    elif [[ $mode == "tag" ]]; then
+    elif [[ $mode == "tag" || $mode == "tags" ]]; then
         echo -e "${lightred}tags:"
         find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
-    elif [[ $mode == "alias" ]]; then
+    elif [[ $mode == "alias" || $mode == "aliases" ]]; then
         echo -e "${lightred}available aliases:${nocolor}"
         cat "$HOME/.zshrc" | grep "alias n1=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
         cat "$HOME/.zshrc" | grep "alias n2=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
