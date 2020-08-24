@@ -17,7 +17,10 @@ alias n="${HOME}/note.sh/note.sh"
 action:
 
 ```bash
+# add, new and create are equivalent
+n add "the best thing about shell"
 n new "the best thing about shell"
+n create "the best thing about shell"
 ```
 
 output:
@@ -93,6 +96,7 @@ it's ubiquitous and always available.
 action:
 
 ```bash
+# ls and list are equivalent
 n list
 # or you can use a shorter form
 n ls
