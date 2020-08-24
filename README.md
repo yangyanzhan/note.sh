@@ -170,6 +170,23 @@ action:
 n help
 ```
 
+# RoadMap
+
+- [x] Basic Note Creation
+- [x] Basic Tag Management
+- [x] Basic Listing
+- [x] Basic Deletion Functionality
+- [ ] Tree Structure within Notes
+- [ ] Export & Import
+- [ ] Auto Sync (Use Github Repo as Note Remote Storage)
+- [ ] Note Representation Template & Customization
+- [ ] Image Attachment
+- [ ] Audio Attachment
+- [ ] Video Attachment
+- [ ] Auto VI Plugin Installation to Enhance Editor Experience
+- [ ] MarkDown Format for Note Content (Including MarkDown Rendering)
+- [ ] NCurses Rendering
+
 ---
 
 **Hi, I'm Yanzhan !. I'm interested in all kinds of algorithmic problems. Also, I'm fascinated with the C++, Raku language and shell scripting. If you want to learn more about programming problems, C++, Raku and shell scripting, please visit my [Youtube Channel :video_camera:](https://www.youtube.com/channel/UCDkz-__gl3frqLexukpG0DA?view_as=subscriber), [Twitter Account :iphone:](https://twitter.com/YangYanzhan) or [GitHub Repo :memo:](https://github.com/yangyanzhan/code-camp).**
