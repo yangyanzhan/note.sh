@@ -181,6 +181,7 @@ new() {
 
 view() {
     no=$1
+    mode=$2
     # output correct no which could be used directly in the info file
     if [[ $no == "no" ]]; then
         valid_no=$(calc_valid_no)
@@ -210,7 +211,7 @@ view() {
         content_path="${note_dir}/${content_sub_dir}/${no}"
         if [ -e $content_path ]; then
             content=$(cat $content_path)
-            if [[ $arg_verbose_flag == 0 ]]; then
+            if [[ $arg_verbose_flag == 0 && $mode != "verbose" ]]; then
                 new_content="${content:0:$arg_shorten_length}"
                 if [[ $content != $new_content ]]; then
                     new_content="${new_content}..."
@@ -377,7 +378,7 @@ main() {
     elif [[ $action == "create" ]]; then
         new
     elif [[ $action == "view" ]]; then
-        view $arg1
+        view $arg1 "verbose"
     elif [[ $action == "edit" ]]; then
         edit $arg1
     elif [[ $action == "tag" ]]; then
