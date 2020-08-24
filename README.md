@@ -79,6 +79,7 @@ action:
 
 ```bash
 # the actual output is colored
+# unlike "ls", the view action will show the full content of the note
 n view 1
 ```
 
@@ -96,10 +97,13 @@ it's ubiquitous and always available.
 action:
 
 ```bash
-# ls and list are equivalent
 n list
 # or you can use a shorter form
+# note that ls and list are equivalent
 n ls
+# and ls or list will only show the first 100 characters of the note
+# to view the full note, you can use --verbose option
+n ls --verbose
 ```
 
 # list all the tags
