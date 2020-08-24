@@ -341,46 +341,34 @@ main() {
     setup
     if [[ $action == "install" ]]; then
         install
-    elif [[ $action == "l" ]]; then
-        list $arg1
     elif [[ $action == "ls" ]]; then
         list $arg1
     elif [[ $action == "list" ]]; then
         list $arg1
-    elif [[ $action == "n" ]]; then
+    elif [[ $action == "add" ]]; then
         new
     elif [[ $action == "new" ]]; then
         new
-    elif [[ $action == "v" ]]; then
-        view $arg1
+    elif [[ $action == "create" ]]; then
+        new
     elif [[ $action == "view" ]]; then
         view $arg1
-    elif [[ $action == "e" ]]; then
-        edit $arg1
     elif [[ $action == "edit" ]]; then
         edit $arg1
-    elif [[ $action == "t" ]]; then
-        tag $arg1 $arg2
     elif [[ $action == "tag" ]]; then
         tag $arg1 $arg2
-    elif [[ $action == "a" ]]; then
-        attach
     elif [[ $action == "attach" ]]; then
         attach
-    elif [[ $action == "r" ]]; then
+    elif [[ $action == "rm" ]]; then
         remove $arg1
     elif [[ $action == "remove" ]]; then
         remove $arg1
-    elif [[ $action == "c" ]]; then
-        my_clear
     elif [[ $action == "clear" ]]; then
         my_clear
     elif [[ $action == "export" ]]; then
         my_export
     elif [[ $action == "import" ]]; then
         my_import
-    elif [[ $action == "h" ]]; then
-        my_help
     elif [[ $action == "help" ]]; then
         my_help
     else
