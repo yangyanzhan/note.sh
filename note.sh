@@ -256,7 +256,7 @@ attach() {
 
 remove() {
     no=$1
-    echo -e "${lightred}removing note ${no}...${nocolor}"
+    echo -e "${lightred}removing note #${no}...${nocolor}"
     title_path="${note_dir}/${title_sub_dir}/${no}"
     if [ -e $title_path ]; then
         rm $title_path
