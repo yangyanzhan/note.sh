@@ -1,6 +1,15 @@
 # note.sh
 A Text-Based Note Keeping Software Completely Written in Shell Script.
 
+# installation
+
+* Clone this repo to any directory as you like and then make a alias to note.sh as command n.
+* For example, I've cloned this repo to my home directory, so after cloning, I should make an alias like this:
+alias n="${HOME}/note.sh/note.sh"
+* And then, append this alias declaration to the end of your ~/.bashrc or ~/.zshrc file.
+* Finally, to make your alias working, don't forget to restart your shell or source your rc file.
+* Now you can enjoy note.sh as the command n.
+
 # create new note with a title
 
 action:
@@ -12,7 +21,9 @@ n new "the best thing about shell"
 output:
 
 ```bash
-# 1 is the serial number (sn) for this note, you can use this sn to further edit this note. Every time you create a new note, note.sh will assign a unique sn for this note. Don't panic if you forget this sn, you can always get this sn by using the list action.
+# 1 is the serial number (sn) for this note, you can use this sn to further edit this note.
+# Every time you create a new note, note.sh will assign a unique sn for this note.
+# Don't panic if you forget this sn, you can always get this sn by using the list action.
 creating new note #1 ...
 done
 ```
@@ -123,6 +134,21 @@ output:
 alias n1="n ls --tag shell"
 ```
 
+# delete a note
+
+action:
+
+```bash
+n remove 1
+```
+
+output:
+
+```bash
+removing note #1...
+done
+```
+
 # clear (delete) all the notes
 
 action:
@@ -130,6 +156,14 @@ action:
 ```bash
 # Be careful, this will delete all your notes.
 n clear
+```
+
+# help
+
+action:
+
+```bash
+n help
 ```
 
 ======
