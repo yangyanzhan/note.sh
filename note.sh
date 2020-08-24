@@ -293,14 +293,17 @@ my_import() {
 
 my_help() {
     echo -e "${lightred}actions:"
-    echo -e "${lightgreen}n list"
-    echo -e "${lightgreen}n list --tag watch"
-    echo -e "${lightgreen}n list tag"
-    echo -e "${lightgreen}n list alias"
-    echo -e "${lightgreen}n view 1"
-    echo -e "${lightgreen}n view no"
-    echo -e "${lightgreen}n edit 1 'Test Title'"
-    echo -e "${lightgreen}n tag 1 'test'"
+    echo -e "${lightgreen}n list ${lightpurple}# list all the notes"
+    echo -e "${lightgreen}n list --tag shell ${lightpurple}# list all the notes in a specific tag"
+    echo -e "${lightgreen}n list tag ${lightpurple}# list all the tags"
+    echo -e "${lightgreen}n list alias ${lightpurple}# list alias related to note.sh"
+    echo -e "${lightgreen}n view 1 ${lightpurple}# view note title, tag and content"
+    echo -e "${lightgreen}n view no ${lightpurple}# view the smallest available sn"
+    echo -e "${lightgreen}n tag 1 'test' ${lightpurple}# add or edit note tag"
+    echo -e "${lightgreen}n edit 1 ${lightpurple}# edit note content"
+    echo -e "${lightgreen}n edit 1 --title ${lightpurple}# edit note title"
+    echo -e "${lightgreen}n new 'the best thing about shell' ${lightpurple}# create new note with a title"
+    echo -e "${darkgray}For more help info, please visit Yanzhan's GitHub Repo: https://github.com/yangyanzhan/note.sh"
 }
 
 error() {
