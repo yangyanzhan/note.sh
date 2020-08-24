@@ -222,15 +222,17 @@ list() {
         echo -e "${lightred}tags:"
         find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
     elif [[ $mode == "alias" ]]; then
-        cat "$HOME/.zshrc" | grep "alias n1="
-        cat "$HOME/.zshrc" | grep "alias n2="
-        cat "$HOME/.zshrc" | grep "alias n3="
-        cat "$HOME/.zshrc" | grep "alias n4="
-        cat "$HOME/.zshrc" | grep "alias n5="
-        cat "$HOME/.zshrc" | grep "alias n6="
-        cat "$HOME/.zshrc" | grep "alias n7="
-        cat "$HOME/.zshrc" | grep "alias n8="
-        cat "$HOME/.zshrc" | grep "alias n9="
+        echo -e "${lightred}available aliases:${nocolor}"
+        cat "$HOME/.zshrc" | grep "alias n1=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n2=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n3=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n4=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n5=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n6=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n7=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n8=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        cat "$HOME/.zshrc" | grep "alias n9=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        echo -e "${darkgray}We suggest using aliases from n1 to n9.${nocolor}"
     fi
 }
 
