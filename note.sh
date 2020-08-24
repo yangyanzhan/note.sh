@@ -319,6 +319,7 @@ my_import() {
 
 my_help() {
     echo -e "${lightred}actions:"
+    echo -e "${lightgreen}n ls ${lightpurple}# list all the notes"
     echo -e "${lightgreen}n list ${lightpurple}# list all the notes"
     echo -e "${lightgreen}n list --tag shell ${lightpurple}# list all the notes in a specific tag"
     echo -e "${lightgreen}n list tag ${lightpurple}# list all the tags"
@@ -328,7 +329,9 @@ my_help() {
     echo -e "${lightgreen}n tag 1 'test' ${lightpurple}# add or edit note tag"
     echo -e "${lightgreen}n edit 1 ${lightpurple}# edit note content"
     echo -e "${lightgreen}n edit 1 --title ${lightpurple}# edit note title"
+    echo -e "${lightgreen}n add 'the best thing about shell' ${lightpurple}# create new note with a title"
     echo -e "${lightgreen}n new 'the best thing about shell' ${lightpurple}# create new note with a title"
+    echo -e "${lightgreen}n create 'the best thing about shell' ${lightpurple}# create new note with a title"
     echo -e "${darkgray}For more help info, please visit Yanzhan's GitHub Repo: https://github.com/yangyanzhan/note.sh"
 }
 
