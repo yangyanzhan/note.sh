@@ -107,10 +107,14 @@ center() {
 }
 
 my_split() {
-    local line
-    read -r line
+    str=$1
+    if [[ $str == "" ]]; then
+        local line
+        read -r line
+        str=$line
+    fi
     IFS=','
-    read -ra arr <<< "$line"
+    read -ra arr <<< "$str"
     for item in "${arr[@]}"; do
         echo "$item"
     done
