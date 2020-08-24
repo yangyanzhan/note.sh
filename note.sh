@@ -16,6 +16,35 @@ arg5=""
 arg_tag=""
 arg_title_flag=0
 
+my_split() {
+    str=$1
+    if [[ $str == "" ]]; then
+        local line
+        read -r line
+        str=$line
+    fi
+    IFS=','
+    read -ra arr <<< "$str"
+    for item in "${arr[@]}"; do
+        echo "$item"
+    done
+    IFS=' '
+}
+
+center() {
+    text="$1"
+    factor="$2"
+    columns=$(tput cols)
+    printf ' %.0s' $(seq 1 $(($columns / $factor)))
+    printf "${text}\n"
+}
+
+divider() {
+    columns=$(tput cols)
+    line=$(printf '=%.0s' $(seq 1 $columns))
+    echo -e "${lightcyan}${line}${nocolor}"
+}
+
 while (( "$#" )); do
     case "$1" in
         --title)
@@ -25,6 +54,7 @@ while (( "$#" )); do
         --tag)
             if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
                 arg_tag=$2
+                arg_tags=$(my_split $arg_tag)
                 shift 2
             else
                 echo "${lightred}Error: Argument for $1 is missing${nocolor}" >&2
@@ -96,35 +126,6 @@ setup() {
     # check project environment and setup
     setup_workspace
     # setup_autocompletion
-}
-
-center() {
-    text="$1"
-    factor="$2"
-    columns=$(tput cols)
-    printf ' %.0s' $(seq 1 $(($columns / $factor)))
-    printf "${text}\n"
-}
-
-my_split() {
-    str=$1
-    if [[ $str == "" ]]; then
-        local line
-        read -r line
-        str=$line
-    fi
-    IFS=','
-    read -ra arr <<< "$str"
-    for item in "${arr[@]}"; do
-        echo "$item"
-    done
-    IFS=' '
-}
-
-divider() {
-    columns=$(tput cols)
-    line=$(printf '=%.0s' $(seq 1 $columns))
-    echo -e "${lightcyan}${line}${nocolor}"
 }
 
 setup_workspace() {
@@ -216,7 +217,14 @@ list() {
             if [[ $arg_tag == "" ]]; then
                 view $no
             else
-                has_tag=$(echo $tags | grep $arg_tag)
+                has_tag=false
+                for tag in $arg_tags
+                do
+                    has_tag=$(echo $tags | grep $tag)
+                    if [[ $has_tag ]]; then
+                        break
+                    fi
+                done
                 if [[ $has_tag ]]; then
                     view $no
                 fi
