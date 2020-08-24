@@ -15,6 +15,8 @@ arg5=""
 
 arg_tag=""
 arg_title_flag=0
+arg_verbose_flag=0
+arg_shorten_length=100
 
 my_split() {
     str=$1
@@ -49,6 +51,10 @@ while (( "$#" )); do
     case "$1" in
         --title)
             arg_title_flag=1
+            shift
+            ;;
+        --verbose)
+            arg_verbose_flag=1
             shift
             ;;
         --tag)
@@ -202,9 +208,15 @@ view() {
         fi
         content="empty"
         content_path="${note_dir}/${content_sub_dir}/${no}"
-        # echo -e "${lightgreen}content:${nocolor}"
         if [ -e $content_path ]; then
             content=$(cat $content_path)
+            if [[ $arg_verbose_flag == 0 ]]; then
+                new_content="${content:0:$arg_shorten_length}"
+                if [[ $content != $new_content ]]; then
+                    new_content="${new_content}..."
+                fi
+                content=$new_content
+            fi
             echo -e "${nocolor}${content}${nocolor}"
         else
             echo -e "${lightred}${content}${nocolor}"
