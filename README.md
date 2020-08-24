@@ -59,12 +59,14 @@ output:
 # this action will invoke a VI editor so that you can edit the content for this note.
 ```
 
-# add tag to a note
+# add or modify tags for a note
 
 action:
 
 ```bash
 # you can use comma to seperate several tags
+# this will add tag "shell" to the #1 note
+# it will replace the old tags if the #1 note has been tagged before
 n tag 1 shell
 ```
 
