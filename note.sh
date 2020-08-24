@@ -106,6 +106,17 @@ center() {
     printf "${text}\n"
 }
 
+my_split() {
+    local line
+    read -r line
+    IFS=','
+    read -ra arr <<< "$line"
+    for item in "${arr[@]}"; do
+        echo "$item"
+    done
+    IFS=' '
+}
+
 divider() {
     columns=$(tput cols)
     line=$(printf '=%.0s' $(seq 1 $columns))
@@ -208,7 +219,7 @@ list() {
             fi
         done
     elif [[ $mode == "tag" ]]; then
-        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | sort | uniq
+        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq
     elif [[ $mode == "alias" ]]; then
         cat "$HOME/.zshrc" | grep "alias n1="
         cat "$HOME/.zshrc" | grep "alias n2="
