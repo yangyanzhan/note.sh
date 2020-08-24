@@ -3,9 +3,11 @@ A Text-Based Note Keeping Software Completely Written in Shell Script.
 
 # installation
 
-* Clone this repo to any directory as you like and then make a alias to note.sh as command n.
+* Clone this repo to any directory as you like and then make an alias to note.sh as command n.
 * For example, I've cloned this repo to my home directory, so after cloning, I should make an alias like this:
+```bash
 alias n="${HOME}/note.sh/note.sh"
+```
 * And then, append this alias declaration to the end of your ~/.bashrc or ~/.zshrc file.
 * Finally, to make your alias working, don't forget to restart your shell or source your rc file.
 * Now you can enjoy note.sh as the command n.
@@ -115,7 +117,9 @@ n ls --tag shell
 action:
 
 ```bash
-# Sometimes, you may want to make a alias to a list action so that you can view your notes more quickly. For this purpose, note.sh suggests using n1-n9 alias to represent note.sh shortcut. For example, if you want to quickly list all the notes in the shell tag, then you can add the following alias declaration to your ~/.bashrc or ~/.zshrc .
+# Sometimes, you may want to make a alias to a list action so that you can view your notes more quickly.
+# For this purpose, note.sh suggests using n1-n9 alias to represent note.sh shortcut.
+# For example, if you want to quickly list all the notes in the shell tag, then you can add the following alias declaration to your ~/.bashrc or ~/.zshrc .
 alias n1="n ls --tag shell"
 ```
 
@@ -166,6 +170,6 @@ action:
 n help
 ```
 
-======
+---
 
 **Hi, I'm Yanzhan !. I'm interested in all kinds of algorithmic problems. Also, I'm fascinated with the C++, Raku language and shell scripting. If you want to learn more about programming problems, C++, Raku and shell scripting, please visit my [Youtube Channel :video_camera:](https://www.youtube.com/channel/UCDkz-__gl3frqLexukpG0DA?view_as=subscriber), [Twitter Account :iphone:](https://twitter.com/YangYanzhan) or [GitHub Repo :memo:](https://github.com/yangyanzhan/code-camp).**
