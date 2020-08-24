@@ -99,8 +99,8 @@ setup() {
 }
 
 center() {
-    text=$1
-    factor=$2
+    text="$1"
+    factor="$2"
     columns=$(tput cols)
     printf ' %.0s' $(seq 1 $(($columns / $factor)))
     printf "${text}\n"
@@ -160,9 +160,9 @@ view() {
             echo -e "${lightred}#${no} does not exist${nocolor}"
             return
         fi
-        title=$(cat "${title_path}" | sed "s/  *//g")
+        title=$(cat "${title_path}" | sed 's/^ *//g' | sed 's/ *$//g')
         title_caption="${lightcyan}#${no}:${nocolor}${lightgreen}${title}${nocolor}"
-        title_caption=$(center $title_caption 3)
+        title_caption=$(center "$title_caption" 3)
         echo -e "${title_caption}"
         tag=""
         tag_path="${note_dir}/${tag_sub_dir}/${no}"
@@ -171,7 +171,7 @@ view() {
         fi
         if [[ $tag != "" ]]; then
             tag_caption="${lightblue}tag:${tag}${nocolor}"
-            tag_caption=$(center $tag_caption 2)
+            tag_caption=$(center "$tag_caption" 2)
             echo -e "${tag_caption}"
         fi
         content="empty"
