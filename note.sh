@@ -219,7 +219,8 @@ list() {
             fi
         done
     elif [[ $mode == "tag" ]]; then
-        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq
+        echo -e "${lightred}tags:"
+        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
     elif [[ $mode == "alias" ]]; then
         cat "$HOME/.zshrc" | grep "alias n1="
         cat "$HOME/.zshrc" | grep "alias n2="
