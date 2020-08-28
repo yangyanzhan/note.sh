@@ -19,6 +19,7 @@ arg_verbose_flag=0
 arg_shorten_length=100
 arg_done_flag=0
 arg_undone_flag=0
+arg_case_flag=0
 
 my_split() {
     str=$1
@@ -65,6 +66,10 @@ while (( "$#" )); do
             ;;
         --undone)
             arg_undone_flag=1
+            shift
+            ;;
+        --case)
+            arg_case_flag=1
             shift
             ;;
         --tag)
@@ -302,7 +307,11 @@ list() {
 
 search() {
     query="$1"
-    results=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+    if [[ $arg_case_flag == 0 ]]; then
+        results=$(grep -i "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+    else
+        results=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+    fi
     if [[ -n $results ]]; then
         echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
         for result in "${results[@]}"; do
