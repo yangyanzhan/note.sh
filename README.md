@@ -164,6 +164,14 @@ output:
 alias n1="n ls --tag shell"
 ```
 
+# search keyword in notes
+
+action:
+
+```bash
+n search shell
+```
+
 # delete a note
 
 action:
