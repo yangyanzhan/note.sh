@@ -17,6 +17,8 @@ arg_tag=""
 arg_title_flag=0
 arg_verbose_flag=0
 arg_shorten_length=100
+arg_done_flag=0
+arg_undone_flag=0
 
 my_split() {
     str=$1
@@ -55,6 +57,14 @@ while (( "$#" )); do
             ;;
         --verbose)
             arg_verbose_flag=1
+            shift
+            ;;
+        --done)
+            arg_done_flag=1
+            shift
+            ;;
+        --undone)
+            arg_undone_flag=1
             shift
             ;;
         --tag)
@@ -236,6 +246,25 @@ list() {
             tags=""
             if [[ -e $tag_path ]]; then
                 tags=$(cat $tag_path)
+            fi
+            if [[ $arg_done_flag == 1 ]]; then
+                content_path="${note_dir}/${content_sub_dir}/${no}"
+                if [ ! -e $content_path ]; then
+                    continue
+                fi
+                content=$(cat $content_path)
+                if [[ $content == "" ]]; then
+                    continue
+                fi
+            fi
+            if [[ $arg_undone_flag == 1 ]]; then
+                content_path="${note_dir}/${content_sub_dir}/${no}"
+                if [ -e $content_path ]; then
+                    content=$(cat $content_path)
+                    if [[ $content != "" ]]; then
+                        continue
+                    fi
+                fi
             fi
             if [[ $arg_tag == "" ]]; then
                 view $no
