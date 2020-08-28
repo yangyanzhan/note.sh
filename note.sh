@@ -247,11 +247,6 @@ list() {
         nos=$(ls "${note_dir}/${title_sub_dir}" | grep -E '[0-9]+' | sort -n)
         for no in $nos
         do
-            tag_path="${note_dir}/${tag_sub_dir}/${no}"
-            tags=""
-            if [[ -e $tag_path ]]; then
-                tags=$(cat $tag_path)
-            fi
             if [[ $arg_done_flag == 1 ]]; then
                 content_path="${note_dir}/${content_sub_dir}/${no}"
                 if [ ! -e $content_path ]; then
@@ -270,6 +265,11 @@ list() {
                         continue
                     fi
                 fi
+            fi
+            tag_path="${note_dir}/${tag_sub_dir}/${no}"
+            tags=""
+            if [[ -e $tag_path ]]; then
+                tags=$(cat $tag_path)
             fi
             if [[ $arg_tag == "" ]]; then
                 view $no
