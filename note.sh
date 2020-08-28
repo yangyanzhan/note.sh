@@ -21,7 +21,7 @@ arg_done_flag=0
 arg_undone_flag=0
 arg_case_flag=0
 
-my_split() {
+my_split_comma() {
     str=$1
     if [[ $str == "" ]]; then
         local line
@@ -75,7 +75,7 @@ while (( "$#" )); do
         --tag)
             if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
                 arg_tag=$2
-                arg_tags=$(my_split $arg_tag)
+                arg_tags=$(my_split_comma $arg_tag)
                 shift 2
             else
                 echo "${lightred}Error: Argument for $1 is missing${nocolor}" >&2
@@ -299,7 +299,7 @@ list() {
         done
     elif [[ $mode == "tag" || $mode == "tags" ]]; then
         echo -e "${lightred}tags:"
-        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
+        find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split_comma | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
     elif [[ $mode == "alias" || $mode == "aliases" ]]; then
         echo -e "${lightred}available aliases:${nocolor}"
         cat "$HOME/.zshrc" | grep "alias n1=" | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
@@ -318,24 +318,27 @@ list() {
 search() {
     query="$1"
     if [[ $arg_case_flag == 0 ]]; then
-        results=$(grep -i "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+        nos=$(grep -i "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
     else
-        results=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+        nos=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
     fi
-    if [[ -n $results ]]; then
-        echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
-        for no in "${results[@]}"; do
+    if [[ -n $nos ]]; then
+        echo -e "${lightgreen}the following notes contain query: ${lightpurple}${query}${nocolor}"
+        for no in "${nos[@]}"; do
             tag_valid=$(check_tag $no)
             if [[ $tag_valid == 1 ]]; then
+                echo -e "${lightpurple}#${no}${nocolor}"
                 if [[ $arg_verbose_flag == 1 ]]; then
-                    view $no
-                else
-                    echo -e "${lightpurple}#${no}${nocolor}"
+                    if [[ $arg_case_flag == 0 ]]; then
+                        view $no | grep --color=always -i "$query"
+                    else
+                        view $no | grep --color=always "$query"
+                    fi
                 fi
             fi
         done
     else
-        echo -e "${lightred}no notes contain query: ${query}${nocolor}"
+        echo -e "${lightred}no notes contain query: ${lightpurple}${query}${nocolor}"
     fi
 }
 
