@@ -324,8 +324,15 @@ search() {
     fi
     if [[ -n $results ]]; then
         echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
-        for result in "${results[@]}"; do
-            echo -e "${lightpurple}#${result}${nocolor}"
+        for no in "${results[@]}"; do
+            tag_valid=$(check_tag $no)
+            if [[ $tag_valid == 1 ]]; then
+                if [[ $arg_verbose_flag == 1 ]]; then
+                    view $no
+                else
+                    echo -e "${lightpurple}#${no}${nocolor}"
+                fi
+            fi
         done
     else
         echo -e "${lightred}no notes contain query: ${query}${nocolor}"
