@@ -169,7 +169,11 @@ alias n1="n ls --tag shell"
 action:
 
 ```bash
+# note.sh ignores case in default mode, so "shell" and "Shell" has the same effect
 n search shell
+n search Shell
+# if you want to search with case sensitivity, use the --case option
+n search Shell --case
 ```
 
 # delete a note
