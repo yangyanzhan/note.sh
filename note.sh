@@ -300,6 +300,12 @@ list() {
     fi
 }
 
+search() {
+    query="$1"
+    echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
+    grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq
+}
+
 edit() {
     no=$1
     title_path="${note_dir}/${title_sub_dir}/${no}"
@@ -400,6 +406,8 @@ main() {
         list $arg1
     elif [[ $action == "list" ]]; then
         list $arg1
+    elif [[ $action == "search" ]]; then
+        search $arg1
     elif [[ $action == "add" ]]; then
         new
     elif [[ $action == "new" ]]; then
