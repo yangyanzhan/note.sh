@@ -71,6 +71,11 @@ action:
 # this will add tag "shell" to the #1 note
 # it will replace the old tags if the #1 note has been tagged before
 n tag 1 shell
+# tag action will reset tags not add tags
+# so if you want to add another tag "tutorial" to note 1
+# always execute something like the following command
+n tag 1 shell,tutorial
+# in other words, everytime you use the tag action, you should provide the entire tag list
 ```
 
 # view note title, tag and content
@@ -169,11 +174,72 @@ alias n1="n ls --tag shell"
 action:
 
 ```bash
-# note.sh ignores case in default mode, so "shell" and "Shell" has the same effect
 n search shell
+```
+
+output:
+
+```bash
+the following notes contain query: shell
+#1
+```
+
+action:
+
+```bash
+# note.sh ignores case in default mode, so "shell" and "Shell" has the same effect
 n search Shell
+```
+
+output:
+
+```bash
+the following notes contain query: Shell
+#1
+```
+
+action:
+
+```bash
 # if you want to search with case sensitivity, use the --case option
 n search Shell --case
+```
+
+output:
+
+```bash
+no notes contain query: Shell
+```
+
+action:
+
+```bash
+# in default mode, search action will only show note serial number
+# if you want to show paragraphs matching the search query, use the --verbose option
+n search ubiquitous --verbose
+```
+
+output:
+
+```bash
+the following notes contain query: ubiquitous
+#1
+it's ubiquitous and always available.
+```
+
+action:
+
+```bash
+# if you want to restrict your search in certain tag or tags, use the --tag option
+# as always, if you want to search in multiple tags, use comma to seperate tags
+n search shell --tag shell,tutorial
+```
+
+output:
+
+```bash
+the following notes contain query: shell
+#1
 ```
 
 # delete a note
