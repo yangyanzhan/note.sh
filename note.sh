@@ -302,8 +302,15 @@ list() {
 
 search() {
     query="$1"
-    echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
-    grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq
+    results=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
+    if [[ -n $results ]]; then
+        echo -e "${lightgreen}the following notes contain query: ${query}${nocolor}"
+        for result in "${results[@]}"; do
+            echo -e "${lightpurple}#${result}${nocolor}"
+        done
+    else
+        echo -e "${lightred}no notes contain query: ${query}${nocolor}"
+    fi
 }
 
 edit() {
