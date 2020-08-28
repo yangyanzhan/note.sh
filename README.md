@@ -122,6 +122,22 @@ action:
 n ls --tag shell
 ```
 
+# list all the notes with contents (i.e. list "done" notes)
+
+action:
+
+```bash
+n ls --done
+```
+
+# list all the notes without contents (i.e. list "undone" notes)
+
+action:
+
+```bash
+n ls --undone
+```
+
 # make alias to list action
 
 action:
