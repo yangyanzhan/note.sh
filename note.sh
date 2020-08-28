@@ -154,6 +154,32 @@ calc_valid_no() {
     echo $(($valid_no + 1))
 }
 
+check_tag() {
+    no=$1
+    tag_path="${note_dir}/${tag_sub_dir}/${no}"
+    tags=""
+    if [[ -e $tag_path ]]; then
+        tags=$(cat $tag_path)
+    fi
+    if [[ $arg_tag == "" ]]; then
+        echo 1
+    else
+        has_tag=false
+        for tag in $arg_tags
+        do
+            has_tag=$(echo $tags | grep $tag)
+            if [[ $has_tag ]]; then
+                break
+            fi
+        done
+        if [[ $has_tag ]]; then
+            echo 1
+        else
+            echo 0
+        fi
+    fi
+}
+
 setup_workspace() {
     if [ ! -e $note_dir ]; then
         echo -e "${lightcyan}creating note storage directory...${nocolor}"
@@ -266,25 +292,9 @@ list() {
                     fi
                 fi
             fi
-            tag_path="${note_dir}/${tag_sub_dir}/${no}"
-            tags=""
-            if [[ -e $tag_path ]]; then
-                tags=$(cat $tag_path)
-            fi
-            if [[ $arg_tag == "" ]]; then
+            tag_valid=$(check_tag $no)
+            if [[ $tag_valid == 1 ]]; then
                 view $no
-            else
-                has_tag=false
-                for tag in $arg_tags
-                do
-                    has_tag=$(echo $tags | grep $tag)
-                    if [[ $has_tag ]]; then
-                        break
-                    fi
-                done
-                if [[ $has_tag ]]; then
-                    view $no
-                fi
             fi
         done
     elif [[ $mode == "tag" || $mode == "tags" ]]; then
