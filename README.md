@@ -274,12 +274,19 @@ action:
 n help
 ```
 
+# Suggestions
+
+note.sh is built to be extremely versatile.
+For example, all the options could be mixed freely. (If you find any option that could not be used together with other options, please report an issue to me. If you find any option that is not context-aware, you can also report an issue to me.)
+I need more ideas to make note.sh even more versatile. If you have any suggestion, feel free to file an issue.
+
 # RoadMap
 
 - [x] Basic Note Creation
 - [x] Basic Tag Management
 - [x] Basic Listing
 - [x] Basic Deletion Functionality
+- [x] Basic Search Functionality
 - [ ] Tree Structure within Notes
 - [ ] Export & Import
 - [ ] Auto Sync (Use Github Repo as Note Remote Storage)
