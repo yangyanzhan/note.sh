@@ -322,6 +322,7 @@ For example, when implementing the argument parser, I deliberately accept severa
 * note.sh is built to be extremely versatile.
 * For example, all the options could be mixed freely. (If you find any option that could not be used together with other options, please report an issue to me. If you find any option that is not context-aware, you can also report an issue to me.)
 * I need more ideas to make note.sh even more versatile. If you have any suggestion, feel free to file an issue.
+* Also, note.sh should work across all kinds of linux and macOS terminals. If you find some platform on which note.sh breaks, please file an issue.
 
 # RoadMap
 
