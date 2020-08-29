@@ -272,6 +272,30 @@ n clear
 n reset
 ```
 
+# export
+
+action:
+
+```bash
+# this action will compress all your notes into notes.zip
+# and save this notes.zip under current directory
+n export
+```
+
+# import
+
+action:
+
+```bash
+# use exported notes.zip to import your notes on other computers
+n import notes.zip
+```
+
+###Be Cautious!!! export and import action will not merge your notes. The only functionality of these two actions is to load and save your notes in a hard way, i.e. when importing, this action will uncompress notes.zip and replace your existing notes if possible.
+###If you want to sync your notes in a soft way, i.e. you want note.sh to merge your notes, then please use the following sync action.
+
+# sync notes with github repo
+
 # help
 
 action:
