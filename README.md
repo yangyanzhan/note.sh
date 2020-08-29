@@ -291,8 +291,8 @@ action:
 n import notes.zip
 ```
 
-###Be Cautious!!! export and import action will not merge your notes. The only functionality of these two actions is to load and save your notes in a hard way, i.e. when importing, this action will uncompress notes.zip and replace your existing notes if possible.
-###If you want to sync your notes in a soft way, i.e. you want note.sh to merge your notes, then please use the following sync action.
+### Be Cautious!!! export and import action will not merge your notes. The only functionality of these two actions is to load and save your notes in a hard way, i.e. when importing, this action will uncompress notes.zip and replace your existing notes if possible.
+### If you want to sync your notes in a soft way, i.e. you want note.sh to merge your notes, then please use the following sync action.
 
 # sync notes with github repo
 
