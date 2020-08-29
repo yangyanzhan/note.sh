@@ -282,7 +282,7 @@ n help
 
 # Custom Configs
 
-note.sh use ~/.note as the default directory to store your notes. If you want to use another directory to store your notes, you can export the environment variable like this.
+* note.sh use ~/.note as the default directory to store your notes. If you want to use another directory to store your notes, you can export the environment variable like this.
 
 ```bash
 export NOTE_ROOT_DIR="some path you want to store notes"
@@ -296,7 +296,8 @@ I need more ideas to make note.sh even more versatile. If you have any suggestio
 
 # Design Principles
 
-note.sh is designed to be extremely versatile, so the argument parser is implemented to accept several names for a same action.
+* note.sh is designed to be extremely versatile.
+For example, when implementing the argument parser, I deliberately accept several names (including shortcuts) for the same action.
 
 # RoadMap
 
