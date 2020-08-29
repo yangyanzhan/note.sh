@@ -464,7 +464,13 @@ main() {
         remove $arg1
     elif [[ $action == "remove" ]]; then
         remove $arg1
+    elif [[ $action == "del" ]]; then
+        remove $arg1
+    elif [[ $action == "delete" ]]; then
+        remove $arg1
     elif [[ $action == "clear" ]]; then
+        my_clear
+    elif [[ $action == "reset" ]]; then
         my_clear
     elif [[ $action == "export" ]]; then
         my_export
