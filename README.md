@@ -248,6 +248,10 @@ action:
 
 ```bash
 n remove 1
+# you can also use the following actions or shortcuts to delete a note
+n rm 1
+n delete 1
+n del 1
 ```
 
 output:
@@ -264,6 +268,8 @@ action:
 ```bash
 # Be careful, this will delete all your notes.
 n clear
+# you can also delete all your notes with the following action
+n reset
 ```
 
 # help
@@ -279,6 +285,10 @@ n help
 note.sh is built to be extremely versatile.
 For example, all the options could be mixed freely. (If you find any option that could not be used together with other options, please report an issue to me. If you find any option that is not context-aware, you can also report an issue to me.)
 I need more ideas to make note.sh even more versatile. If you have any suggestion, feel free to file an issue.
+
+# Design Principles
+
+note.sh is designed to be extremely versatile, so the argument parser is implemented to accept several names for a same action.
 
 # RoadMap
 
