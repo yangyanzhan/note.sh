@@ -312,16 +312,16 @@ n help
 export NOTE_ROOT_DIR="some path you want to store notes"
 ```
 
-# Suggestions
-
-note.sh is built to be extremely versatile.
-For example, all the options could be mixed freely. (If you find any option that could not be used together with other options, please report an issue to me. If you find any option that is not context-aware, you can also report an issue to me.)
-I need more ideas to make note.sh even more versatile. If you have any suggestion, feel free to file an issue.
-
 # Design Principles
 
 * note.sh is designed to be extremely versatile.
 For example, when implementing the argument parser, I deliberately accept several names (including shortcuts) for the same action.
+
+# Suggestions
+
+* note.sh is built to be extremely versatile.
+* For example, all the options could be mixed freely. (If you find any option that could not be used together with other options, please report an issue to me. If you find any option that is not context-aware, you can also report an issue to me.)
+* I need more ideas to make note.sh even more versatile. If you have any suggestion, feel free to file an issue.
 
 # RoadMap
 
