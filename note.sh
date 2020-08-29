@@ -113,8 +113,10 @@ setup_autocompletion() {
 setup() {
     # setup global variables
     # project root directory
-    root_dir=$(dirname $BASH_SOURCE)
     root_dir=$HOME
+    if [[ $NOTE_ROOT_DIR != "" ]]; then
+        root_dir=$NOTE_ROOT_DIR
+    fi
     # note storage directory
     note_dir="${root_dir}/.note"
     # meta info
