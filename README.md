@@ -280,6 +280,14 @@ action:
 n help
 ```
 
+# Custom Configs
+
+note.sh use ~/.note as the default directory to store your notes. If you want to use another directory to store your notes, you can export the environment variable like this.
+
+```bash
+export NOTE_ROOT_DIR="some path you want to store notes"
+```
+
 # Suggestions
 
 note.sh is built to be extremely versatile.
