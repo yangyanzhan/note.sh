@@ -325,17 +325,24 @@ search() {
         nos=$(grep "${query}" -R "${note_dir}" | grep -E -o "[0-9]+" | sort | uniq)
     fi
     if [[ -n $nos ]]; then
-        echo -e "${lightgreen}the following notes contain query: ${lightpurple}${query}${nocolor}"
+        tmp_nos=()
         for no in "${nos[@]}"; do
             tag_valid=$(check_tag $no)
             if [[ $tag_valid == 1 ]]; then
-                echo -e "${lightpurple}#${no}${nocolor}"
-                if [[ $arg_verbose_flag == 1 ]]; then
-                    if [[ $arg_case_flag == 0 ]]; then
-                        view $no | grep --color=always -i "$query"
-                    else
-                        view $no | grep --color=always "$query"
-                    fi
+                tmp_nos+=($no)
+            fi
+        done
+        nos=$tmp_nos
+    fi
+    if [[ -n $nos ]]; then
+        echo -e "${lightgreen}the following notes contain query: ${lightpurple}${query}${nocolor}"
+        for no in "${nos[@]}"; do
+            echo -e "${lightpurple}#${no}${nocolor}"
+            if [[ $arg_verbose_flag == 1 ]]; then
+                if [[ $arg_case_flag == 0 ]]; then
+                    view $no | grep --color=always -i "$query"
+                else
+                    view $no | grep --color=always "$query"
                 fi
             fi
         done
