@@ -117,6 +117,10 @@ setup() {
     if [[ $NOTE_ROOT_DIR != "" ]]; then
         root_dir=$NOTE_ROOT_DIR
     fi
+    remote_repo=""
+    if [[ $NOTE_REMOTE_REPO != "" ]]; then
+	    remote_repo=$NOTE_REMOTE_REPO
+    fi
     # note storage directory
     note_dir="${root_dir}/.note"
     # meta info
