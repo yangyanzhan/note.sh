@@ -458,6 +458,8 @@ main() {
     setup
     if [[ $action == "install" ]]; then
         install
+    elif [[ $action == "setup" ]]; then
+        echo -e "${lightgreen}setup done${nocolor}"
     elif [[ $action == "ls" ]]; then
         list $arg1
     elif [[ $action == "list" ]]; then
