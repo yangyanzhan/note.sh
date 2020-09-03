@@ -272,7 +272,21 @@ n clear
 n reset
 ```
 
+# sync notes with github repo the storage backend
+
+# help
+
+action:
+
+```bash
+n help
+```
+
+# deprecated actions, for users with a big heart :-)
+
 # export
+
+## deprecated !! use sync instead
 
 action:
 
@@ -284,6 +298,8 @@ n export
 
 # import
 
+## deprecated !! use sync instead
+
 action:
 
 ```bash
@@ -292,17 +308,7 @@ n import notes.zip
 ```
 
 ### Be Cautious!!! export and import action will not merge your notes. The only functionality of these two actions is to load and save your notes in a hard way, i.e. when importing, this action will uncompress notes.zip and replace your existing notes if possible.
-### If you want to sync your notes in a soft way, i.e. you want note.sh to merge your notes, then please use the following sync action.
-
-# sync notes with github repo the storage backend
-
-# help
-
-action:
-
-```bash
-n help
-```
+### If you want to sync your notes in a soft way, i.e. you want note.sh to merge your notes, then please use the sync action.
 
 # Custom Configs
 

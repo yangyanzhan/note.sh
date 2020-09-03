@@ -417,11 +417,14 @@ my_clear() {
 }
 
 my_export() {
-    echo "placeholder for export action"
+    echo -e "${lightred}export action is deprecated !! use sync instead${nocolor}"
+    echo "the manual export command is 'zip -r notes.zip ${note_dir}'"
 }
 
 my_import() {
-    echo "placeholder for import action"
+    notes_zip=$1
+    echo -e "${lightred}import action is deprecated !! use sync instead${nocolor}"
+    echo "the manual import command is 'unzip -o notes.zip -d ${notes_zip}'"
 }
 
 my_help() {
@@ -486,7 +489,7 @@ main() {
     elif [[ $action == "export" ]]; then
         my_export
     elif [[ $action == "import" ]]; then
-        my_import
+        my_import $arg1
     elif [[ $action == "help" ]]; then
         my_help
     else
