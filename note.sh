@@ -188,13 +188,17 @@ check_tag() {
 
 setup_workspace() {
     if [ ! -e $note_dir ]; then
-        echo -e "${lightcyan}creating note storage directory...${nocolor}"
-        mkdir -p "${note_dir}/${title_sub_dir}"
-        mkdir -p "${note_dir}/${content_sub_dir}"
-        mkdir -p "${note_dir}/${tag_sub_dir}"
-        mkdir -p "${note_dir}/${image_sub_dir}"
-        echo 1 > "${note_dir}/${info_filename}"
-        echo -e "${lightgreen}done${nocolor}"
+        if [[ $remote_repo != "" ]]; then
+            cd $root_dir && git clone $remote_repo ".note" && cd -
+        else
+            echo -e "${lightcyan}creating empty note storage directory...${nocolor}"
+            mkdir -p "${note_dir}/${title_sub_dir}"
+            mkdir -p "${note_dir}/${content_sub_dir}"
+            mkdir -p "${note_dir}/${tag_sub_dir}"
+            mkdir -p "${note_dir}/${image_sub_dir}"
+            echo 1 > "${note_dir}/${info_filename}"
+            echo -e "${lightgreen}done${nocolor}"
+        fi
     fi
     max_no=$(cat "${note_dir}/${info_filename}")
     valid_no=$(calc_valid_no)

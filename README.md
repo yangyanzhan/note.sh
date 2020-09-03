@@ -274,6 +274,40 @@ n reset
 
 # sync notes with github repo the storage backend
 
+note.sh uses github to store your notes. To use the sync action, you should first register github repo to note.sh. You could do this following these instructions.
+
+There are 2 scenarios.
+
+```
+Scenario 1: You are a complete new user.
+
+In this scenario, after installing note.sh, you should run any action offered by note.sh so that note.sh could setup a working directory for you.
+
+n ls
+
+And then, you should enter your notes directory, usually this directory is ~/.note. In this directory, you should setup a git repo and push this repo to github.
+
+Finally, set your github repo as the environment variable NOTE_REMOTE_REPO.
+
+Now, note.sh could correctly handle the sync action.
+```
+
+```
+Senario 2: You already have used note.sh on another computer and you want to setup note.sh on the current computer.
+
+In this scenario, you should set your github repo as the environment variable NOTE_REMOTE_REPO.
+
+And then, you could run any action offered by note.sh, note.sh will automatically pull the notes into your working directory.
+```
+
+After setup, now you can use the sync action. The sync action will first pull your notes from your github repo and then push your local changes to your github repo.
+
+action:
+
+```bash
+n sync
+```
+
 # help
 
 action:
