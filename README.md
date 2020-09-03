@@ -272,7 +272,7 @@ n clear
 n reset
 ```
 
-# sync notes with github repo the storage backend
+# sync notes (with the github repo as the storage backend)
 
 note.sh uses github to store your notes. To use the sync action, you should first register github repo to note.sh. You could do this following these instructions.
 
@@ -283,9 +283,7 @@ Scenario 1: You are a complete new user.
 
 In this scenario, after installing note.sh, you should run any action offered by note.sh so that note.sh could setup a working directory for you.
 
-n ls
-
-And then, you should enter your notes directory, usually this directory is ~/.note. In this directory, you should setup a git repo and push this repo to github.
+And then, you should enter your working directory, usually this directory is ~/.note. In this directory, you should setup a git repo and push this repo to github.
 
 Finally, set your github repo as the environment variable NOTE_REMOTE_REPO.
 
