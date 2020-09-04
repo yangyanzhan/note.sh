@@ -150,8 +150,6 @@ setup() {
     lightpurple="\033[1;35m"
     lightcyan="\033[1;36m"
     white="\033[1;37m"
-    # check project environment and setup
-    setup_workspace
     # setup_autocompletion
 }
 
@@ -422,13 +420,15 @@ my_clear() {
 
 my_export() {
     echo -e "${lightred}export action is deprecated !! use sync instead${nocolor}"
-    echo "the manual export command is 'zip -r notes.zip ${note_dir}'"
+    curr_dir=$(pwd)
+    echo "the manual export command is 'cd ${root_dir} && zip -r notes.zip .note && mv notes.zip ${curr_dir} && cd -'"
 }
 
 my_import() {
     notes_zip=$1
     echo -e "${lightred}import action is deprecated !! use sync instead${nocolor}"
-    echo "the manual import command is 'unzip -o notes.zip -d ${notes_zip}'"
+    curr_dir=$(pwd)
+    echo "the manual import command is 'cd ${root_dir} && unzip -o ${curr_dir}/notes.zip && cd -'"
 }
 
 git_pull_and_push() {
@@ -470,6 +470,10 @@ error() {
 
 main() {
     setup
+    if [[ $action != "import" ]]; then
+        # check project environment and setup
+        setup_workspace
+    fi
     if [[ $action == "install" ]]; then
         install
     elif [[ $action == "setup" ]]; then
