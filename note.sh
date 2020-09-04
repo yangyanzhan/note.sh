@@ -310,15 +310,26 @@ list() {
         find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split_comma | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
     elif [[ $mode == "alias" || $mode == "aliases" ]]; then
         echo -e "${lightred}available aliases:${nocolor}"
-        cat "$HOME/.zshrc" | grep "alias n1=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n1=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n2=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n2=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n3=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n3=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n4=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n4=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n5=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n5=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n6=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n6=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n7=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n7=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n8=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n8=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
-        cat "$HOME/.zshrc" | grep "alias n9=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n9=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        rc_file=".zshrc"
+        case $SHELL in
+        */zsh)
+            rc_file=".zshrc"
+            ;;
+        */bash)
+            rc_file=".bashrc"
+            ;;
+        *)
+            echo -e "${red}note.sh can't determine if you are using zsh or bash.${nocolor}"
+        esac
+        cat "${HOME}/${rc_file}" | grep "alias n1=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n1=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n2=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n2=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n3=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n3=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n4=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n4=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n5=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n5=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n6=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n6=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n7=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n7=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n8=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n8=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
+        cat "${HOME}/${rc_file}" | grep "alias n9=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n9=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
         echo -e "${darkgray}We suggest using aliases from n1 to n9.${nocolor}"
     fi
 }
