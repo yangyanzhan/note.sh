@@ -379,6 +379,7 @@ For example, when implementing the argument parser, I deliberately accept severa
 - [ ] Auto VI Plugin Installation to Enhance Editor Experience
 - [ ] MarkDown Format for Note Content (Including MarkDown Rendering)
 - [ ] NCurses Rendering
+- [ ] Auto Complete for Actions and Options
 
 ---
 
