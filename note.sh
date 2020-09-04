@@ -111,6 +111,20 @@ setup_autocompletion() {
 }
 
 setup() {
+    shell_type="zsh"
+    rc_file=".zshrc"
+    case $SHELL in
+    */zsh)
+        shell_type="zsh"
+        rc_file=".zshrc"
+        ;;
+    */bash)
+        shell_type="bash"
+        rc_file=".bashrc"
+        ;;
+    *)
+        echo -e "${red}note.sh can't determine if you are using zsh or bash.${nocolor}"
+    esac
     # setup global variables
     # project root directory
     root_dir=$HOME
@@ -310,17 +324,6 @@ list() {
         find "${note_dir}/tag" -name "*" -type f | grep -E '[0-9]+' | xargs -I % sh -c "cat %" | tr '\n' ',' |  my_split_comma | sort | uniq | xargs -I % sh -c "echo \"${lightgreen}%${nocolor}\""
     elif [[ $mode == "alias" || $mode == "aliases" ]]; then
         echo -e "${lightred}available aliases:${nocolor}"
-        rc_file=".zshrc"
-        case $SHELL in
-        */zsh)
-            rc_file=".zshrc"
-            ;;
-        */bash)
-            rc_file=".bashrc"
-            ;;
-        *)
-            echo -e "${red}note.sh can't determine if you are using zsh or bash.${nocolor}"
-        esac
         cat "${HOME}/${rc_file}" | grep "alias n1=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n1=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
         cat "${HOME}/${rc_file}" | grep "alias n2=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n2=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
         cat "${HOME}/${rc_file}" | grep "alias n3=" | cut -d'=' -f 2 | xargs -I % sh -c "echo \"${lightgreen}alias n3=${nocolor}\"""\'\"${lightgreen}%${nocolor}\"\'"
