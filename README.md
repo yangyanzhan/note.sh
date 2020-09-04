@@ -371,7 +371,7 @@ For example, when implementing the argument parser, I deliberately accept severa
 - [x] Basic Search Functionality
 - [ ] Tree Structure within Notes
 - [x] Export & Import
-- [ ] Auto Sync (Use Github Repo as Note Remote Storage)
+- [x] Auto Sync (Use Github Repo as Note Remote Storage)
 - [ ] Note Representation Template & Customization
 - [ ] Image Attachment
 - [ ] Audio Attachment
