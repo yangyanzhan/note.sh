@@ -123,6 +123,7 @@ setup() {
         rc_file=".bashrc"
         ;;
     *)
+        # note.sh prefer zsh, if note.sh can't determine your shell type, it'll assume you are using zsh.
         echo -e "${red}note.sh can't determine if you are using zsh or bash.${nocolor}"
     esac
     # setup global variables
