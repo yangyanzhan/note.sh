@@ -431,8 +431,18 @@ my_import() {
     echo "the manual import command is 'unzip -o notes.zip -d ${notes_zip}'"
 }
 
+git_pull_and_push() {
+    git pull
+    status=$(git status --porcelain)
+    if [[ $status != "" ]]; then
+        git add .
+        git commit -m "add notes"
+        git push
+    fi
+}
+
 my_sync() {
-    cd $note_dir && git pull && (cd - > /dev/null)
+    cd $note_dir && git_pull_and_push && (cd - > /dev/null)
 }
 
 my_help() {
