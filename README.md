@@ -306,6 +306,8 @@ action:
 n sync
 ```
 
+note.sh won't sync your aliases because your .zshrc or .bashrc may contain personal information. To sync your aliases to another computer, please do it manually. You can list your aliases by using the "n ls alias" command and then export these aliases to the .zshrc or .bashrc file of another computer.
+
 # help
 
 action:
