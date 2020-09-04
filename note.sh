@@ -431,6 +431,10 @@ my_import() {
     echo "the manual import command is 'unzip -o notes.zip -d ${notes_zip}'"
 }
 
+my_sync() {
+    cd $note_dir && git pull && (cd - > /dev/null)
+}
+
 my_help() {
     echo -e "${lightred}actions:"
     echo -e "${lightgreen}n ls ${lightpurple}# list all the notes"
@@ -496,6 +500,8 @@ main() {
         my_export
     elif [[ $action == "import" ]]; then
         my_import $arg1
+    elif [[ $action == "sync" ]]; then
+        my_sync
     elif [[ $action == "help" ]]; then
         my_help
     else
