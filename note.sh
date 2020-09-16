@@ -475,7 +475,7 @@ my_help() {
     echo -e "${lightgreen}n add 'the best thing about shell' ${lightpurple}# create new note with a title"
     echo -e "${lightgreen}n new 'the best thing about shell' ${lightpurple}# create new note with a title"
     echo -e "${lightgreen}n create 'the best thing about shell' ${lightpurple}# create new note with a title"
-    echo -e "${lightgreen}n sync ${lightpurple}# sync notes to github"
+    echo -e "${lightgreen}n sync ${lightpurple}# sync notes to github. sync action requires github repo setup. for more instructions, visit https://github.com/yangyanzhan/note.sh ."
     echo -e "${darkgray}For more help info, please visit Yanzhan's GitHub Repo: https://github.com/yangyanzhan/note.sh"
 }
 
